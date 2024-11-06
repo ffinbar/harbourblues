@@ -229,7 +229,7 @@
   
         const loader = new GLTFLoader();
         let box;
-        loader.load('./allbox.glb', function (gltf) {
+        loader.load('./allboxv2.glb', function (gltf) {
             console.log(gltf);
             box = gltf.scene;
             box.scale.set(10, 10, 10);
@@ -242,7 +242,7 @@
     
     
         let water;
-        loader.load('./water.glb', function (gltf) {
+        loader.load('./water4.glb', function (gltf) {
             console.log(gltf);
             water = gltf.scene;
             water.scale.set(10, 10, 10);
