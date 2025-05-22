@@ -240,9 +240,8 @@
             animUpdate(true);
         });
     
-    
         let water;
-        loader.load('./water4.glb', function (gltf) {
+        loader.load('./water5.glb', function (gltf) {
             console.log(gltf);
             water = gltf.scene;
             water.scale.set(10, 10, 10);
@@ -251,10 +250,10 @@
 
             water.traverse(function (node) {
                 if (node.isMesh) {
-                    node.material.transparent = true;
-                    node.material.opacity = 0.9;
-                    node.material.metalness = 1;
-                    node.material.roughness = 0.1;
+                    // node.material.transparent = true;
+                    // node.material.opacity = 0.9;
+                    // node.material.metalness = 1;
+                    // node.material.roughness = 0.1;
                 }
             });
 
