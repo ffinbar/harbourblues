@@ -158,7 +158,6 @@
         document.body.appendChild(labelRenderer.domElement);
 
         const title = labelRenderer.domElement;
-        console.log(title);
 
         let needsUpdate = true;
 
@@ -206,8 +205,6 @@
             point2LabelPosition = viewport2Position;
         }
         point2Label.position.set(0, point2LabelPosition, 0);
-        console.log(viewport2Position);
-        console.log(point2Label.position);
         scene.add(point2Label);
         
         const point3Element = document.createElement('div');
@@ -225,7 +222,6 @@
 
         const point3Label = new CSS2DObject(point3Element);
         const viewport3Position = -window.innerHeight * 0.04;
-        console.log(viewport3Position);
         let point3LabelPosition;
         if(viewport3Position > -50) {
             point3LabelPosition = -60;
@@ -233,7 +229,6 @@
             point3LabelPosition = viewport3Position;
         }
         point3Label.position.set(0, point3LabelPosition, 0);
-        console.log(point3Label.position);
         scene.add(point3Label);
 
         const point4Element = document.createElement('div');
@@ -248,7 +243,6 @@
         const loader = new GLTFLoader();
         let box;
         loader.load('./allboxv2.glb', function (gltf) {
-            console.log(gltf);
             box = gltf.scene;
             box.scale.set(10, 10, 10);
             box.position.set(0, 0, 0);
@@ -260,7 +254,6 @@
     
         let water;
         loader.load('./water5.glb', function (gltf) {
-            console.log(gltf);
             water = gltf.scene;
             water.scale.set(10, 10, 10);
             water.position.set(0, 0, 0);
