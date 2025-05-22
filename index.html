@@ -199,7 +199,15 @@
 
         const point2Label = new CSS2DObject(point2Element);
         const viewport2Position = -window.innerHeight * 0.02;
-        point2Label.position.set(0, Math.min(viewport2Position, -25), 0);
+        let point2LabelPosition;
+        if(viewport2Position > -25) {
+            point2LabelPosition = -30;
+        } else {
+            point2LabelPosition = viewport2Position;
+        }
+        point2Label.position.set(0, point2LabelPosition, 0);
+        console.log(viewport2Position);
+        console.log(point2Label.position);
         scene.add(point2Label);
         
         const point3Element = document.createElement('div');
@@ -218,7 +226,14 @@
         const point3Label = new CSS2DObject(point3Element);
         const viewport3Position = -window.innerHeight * 0.04;
         console.log(viewport3Position);
-        point3Label.position.set(0, Math.min(viewport3Position, -50), 0);
+        let point3LabelPosition;
+        if(viewport3Position > -50) {
+            point3LabelPosition = -60;
+        } else {
+            point3LabelPosition = viewport3Position;
+        }
+        point3Label.position.set(0, point3LabelPosition, 0);
+        console.log(point3Label.position);
         scene.add(point3Label);
 
         const point4Element = document.createElement('div');
