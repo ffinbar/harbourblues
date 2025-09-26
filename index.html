@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HARBOURBLUES - Design Studio SYD</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <div class="container">
@@ -41,7 +45,7 @@
             <div class="mailing-content">
                 <p class="mailing-subtitle">Be the first one to know about our latest projects.</p>
                 
-                <form id="emailForm" class="mailing-form" name="enquiry" method="POST" netlify>
+                <form id="emailForm" class="mailing-form" netlify name="enquiry">
                     <input type="hidden" name="form-name" value="enquiry" />
                     <div class="input-group">
                         <span class="input-label">Name</span>
@@ -135,25 +139,24 @@
             setLoading(true);
             
             try {
-                // Submit form data to Netlify
+                // Create form data
                 const formData = new FormData(form);
                 
+                // Submit form data to Netlify
                 const response = await fetch('/', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
+                    body: formData
                 });
                 
                 if (response.ok) {
                     showMessage('🎉 Thank you for your enquiry! We\'ll be in touch soon.', 'success');
-                    nameInput.value = ''; // Clear the form
-                    emailInput.value = ''; // Clear the form
+                    form.reset(); // Clear the form
                 } else {
-                    showMessage('Something went wrong. Please try again.', 'error');
+                    throw new Error('Form submission failed');
                 }
             } catch (error) {
-                showMessage('Network error. Please check your connection and try again.', 'error');
-                console.error('Network error:', error);
+                console.error('Form submission error:', error);
+                showMessage('Something went wrong. Please try again.', 'error');
             }
             
             setLoading(false);
