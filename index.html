@@ -3,328 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harbour Blues</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: scroll;
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .label {
-            color: white;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* #labelRenderer {} */
-
-        #labelRenderer > * {
-            user-select: all !important;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: .5rem 1rem;
-            background: rgba(16, 16, 41, 0.5);
-            color: white;
-            text-transform: uppercase;
-
-            font-family: 'Times New Roman', Times, serif;
-            z-index: 4;
-            backdrop-filter: blur(4px);
-            font-size: 1rem;
-
-        }
-
-        nav {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-
-        h1,h2 {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: 8vw;
-        }
-
-        h2 {
-            font-size: 1rem;
-        }
-
-        nav .wide {
-            display: none;
-        }
-
-        nav .burger {
-            display: block;
-        }
-
-        @media screen and (min-width: 600px) {
-            h1 {
-                font-size: 4vw;
-            }
-
-            nav .wide {
-                display: block;
-            }
-
-            nav .burger {
-                display: none;
-            }
-        }
-
-    </style>
+    <title>HARBOURBLUES - Design Studio SYD</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Header Navigation -->
+        <header class="header">
+            <div class="logo">HB.</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
 
-    <header>
-        <h2>HarbourBlues</h2>
-        <nav>
-            <li class="wide">About</li>
-            <li class="wide">Enquire</li>
-            <li class="wide">Gallery</li>
-            <li class="burger"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"/></svg></li>
-        </nav>
-    </header>
+        <!-- Main Title Section -->
+        <div class="title-section">
+            <h1 class="main-title">HARBOURBLUES.</h1>
+            <p class="subtitle">Design Studio</p>
+            <p class="location">SYD</p>
+        </div>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
-                "orbitControls": "https://unpkg.com/three@0.164.1/examples/jsm/controls/OrbitControls.js",
-                "CSS2DRenderer": "https://unpkg.com/three@0.164.1/examples/jsm/renderers/CSS2DRenderer.js",
-                "stats": "https://unpkg.com/three@0.164.1/examples/jsm/libs/stats.module.js"
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="designer">LUKA J.K MCDADE</p>
+            <p class="year">2025</p>
+        </footer>
+    </div>
+
+    <!-- Mailing List Section -->
+    <div class="mailing-list-section">
+        <div class="mailing-container">
+            <div class="mailing-header">
+                <h2>HEAR FROM US</h2>
+            </div>
+            <div class="mailing-content">
+                <p class="mailing-subtitle">Enter your details below to receive the latest updates, exclusive content, and special offers delivered straight to your inbox.</p>
+                
+                <form id="emailForm" class="mailing-form" name="enquiry" method="POST" netlify>
+                    <input type="hidden" name="form-name" value="enquiry" />
+                    <div class="input-group">
+                        <span class="input-label">Name</span>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name"
+                            placeholder="Enter your name" 
+                            required
+                        >
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">Email</span>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"
+                            placeholder="Enter your email" 
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <div class="loading" id="loading"></div>
+                        <span id="buttonText">ENQUIRE</span>
+                    </button>
+                </form>
+
+                <div id="message" class="message"></div>
+                
+                <p class="privacy-text">
+                    We will never share your information.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form elements
+        const form = document.getElementById('emailForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const buttonText = document.getElementById('buttonText');
+        const messageDiv = document.getElementById('message');
+        
+        // Show message function
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            // Auto-hide success messages
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
             }
         }
-    </script>
-
-    <script type="module">
-        import * as THREE from 'three';
-        import { Water } from 'https://unpkg.com/three/examples/jsm/objects/Water.js';
-        import { OrbitControls } from 'orbitControls';
-        import { GLTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js';
-        import { CSS2DRenderer, CSS2DObject } from 'CSS2DRenderer';
-        import Stats from 'stats';
-
-        const stats = new Stats();
-        stats.showPanel(0);
-        // document.body.appendChild(stats.dom);
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 10000);
-        const renderer = new THREE.WebGLRenderer();
-
-        const labelRenderer = new CSS2DRenderer();
-        labelRenderer.setSize(window.innerWidth, window.innerHeight);
-        labelRenderer.domElement.id = 'labelRenderer';
-        labelRenderer.domElement.style.position = 'absolute';
-        labelRenderer.domElement.style.top = '0px';
-        labelRenderer.domElement.style.zIndex = '1';
-        labelRenderer.domElement.style.overflow = 'scroll';
-        document.body.appendChild(labelRenderer.domElement);
-
-        const title = labelRenderer.domElement;
-
-        let needsUpdate = true;
-
-        renderer.antialias = false;
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 2;
-        renderer.outputEncoding = THREE.sRGBEncoding;
-        document.body.appendChild(renderer.domElement);
-
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.25;
-        controls.enableZoom = false;
-        controls.enablePan = false;
-        controls.enableRotate = false;
-
-        let controlsTarget = new THREE.Vector3(0, 0, -10);
-        controls.target = controlsTarget;
-
-        const point1Element = document.createElement('h1');
-        point1Element.innerHTML = 'Harbour Blues';
-        const point1Label = new CSS2DObject(point1Element);
-        point1Label.position.set(0, 2, 0);
-        scene.add(point1Label);
         
-        const point2Element = document.createElement('div');
-        point2Element.className = 'label';
-        point2Element.textContent = 'Point 2';
-        const img = document.createElement('img');
-        img.style.width = '100%';
-        img.style.height = '100%';
-        
-        img.src = 'https://www.w3schools.com/w3images/fjords.jpg';
-        point2Element.appendChild(img);
-
-        const point2Label = new CSS2DObject(point2Element);
-        const viewport2Position = -window.innerHeight * 0.02;
-        let point2LabelPosition;
-        if(viewport2Position > -25) {
-            point2LabelPosition = -30;
-        } else {
-            point2LabelPosition = viewport2Position;
+        // Set loading state
+        function setLoading(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                loading.style.display = 'inline-block';
+                buttonText.textContent = 'Submitting...';
+            } else {
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+                buttonText.textContent = 'ENQUIRE';
+            }
         }
-        point2Label.position.set(0, point2LabelPosition, 0);
-        scene.add(point2Label);
         
-        const point3Element = document.createElement('div');
-        point3Element.className = 'label';
-        point3Element.textContent = 'Point 3';
-
-        const video = document.createElement('video');
-        video.src = 'https://www.w3schools.com/html/mov_bbb.mp4';
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true;
-        video.style.width = '100%';
-        video.style.height = '100%';
-        point3Element.appendChild(video);
-
-        const point3Label = new CSS2DObject(point3Element);
-        const viewport3Position = -window.innerHeight * 0.04;
-        let point3LabelPosition;
-        if(viewport3Position > -50) {
-            point3LabelPosition = -60;
-        } else {
-            point3LabelPosition = viewport3Position;
-        }
-        point3Label.position.set(0, point3LabelPosition, 0);
-        scene.add(point3Label);
-
-        const point4Element = document.createElement('div');
-        point4Element.className = 'label';
-        point4Element.textContent = 'Finbar 2024';
-        const point4Label = new CSS2DObject(point4Element);
-        point4Label.position.set(0, -200, 0);
-        scene.add(point4Label);
-
-        camera.position.set(0, 0, 15);
-  
-        const loader = new GLTFLoader();
-        let box;
-        loader.load('./allboxv2.glb', function (gltf) {
-            box = gltf.scene;
-            box.scale.set(10, 10, 10);
-            box.position.set(0, 0, 0);
-            box.rotation.set(0, -Math.PI / 2, 0);
-            scene.add(box);
-
-            animUpdate(true);
-        });
-    
-        let water;
-        loader.load('./water5.glb', function (gltf) {
-            water = gltf.scene;
-            water.scale.set(10, 10, 10);
-            water.position.set(0, 0, 0);
-            water.rotation.set(0, -Math.PI/2, 0);
-
-            water.traverse(function (node) {
-                if (node.isMesh) {
-                    // node.material.transparent = true;
-                    // node.material.opacity = 0.9;
-                    // node.material.metalness = 1;
-                    // node.material.roughness = 0.1;
+        // Handle form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            
+            if (!name) {
+                showMessage('Please enter your name.', 'error');
+                return;
+            }
+            
+            if (!email) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                // Submit form data to Netlify
+                const formData = new FormData(form);
+                
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+                
+                if (response.ok) {
+                    showMessage('🎉 Thank you for your enquiry! We\'ll be in touch soon.', 'success');
+                    nameInput.value = ''; // Clear the form
+                    emailInput.value = ''; // Clear the form
+                } else {
+                    showMessage('Something went wrong. Please try again.', 'error');
                 }
-            });
-
-            scene.add(water);
-            animUpdate(true);
-        });
-
-        let scrollVal = 0.02;
-
-        function updateCameraPosition(element) {
-            let scrollY = title.scrollTop;
-
-            camera.position.y = Math.max(-70, -scrollY * scrollVal);
-            controlsTarget = new THREE.Vector3(0, camera.position.y, -1);
-            controls.target = controlsTarget;
-            controls.update();
-
-            animUpdate(true);
-        }
-
-        function animUpdate(bool) {
-            needsUpdate = bool;
-            if (bool) {
-                requestAnimationFrame(animate);
+            } catch (error) {
+                showMessage('Network error. Please check your connection and try again.', 'error');
+                console.error('Network error:', error);
             }
-        }
-
-        function animate() {
-            stats.begin();
-            if (needsUpdate) {
-                controls.update();
-                renderer.render(scene, camera);
-                labelRenderer.render(scene, camera);
-                needsUpdate = false;
-            }
-            stats.end();
-        }
-        animate();
-
-        window.onresize = () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-
-            camera.updateProjectionMatrix();
-            controls.update();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            labelRenderer.setSize(window.innerWidth, window.innerHeight);
-
-            animUpdate(true);
-        }
-
-        title.addEventListener('scroll', () => {
-            updateCameraPosition(title);
+            
+            setLoading(false);
         });
-
-        // Move camera when press q
-        // document.addEventListener('keydown', (event) => {
-        //     if (event.key === 'q') {
-        //         camera.position.z += 10;
-        //     }
-        // });
+        
+        // Clear message when user starts typing
+        nameInput.addEventListener('input', () => {
+            if (messageDiv.style.display === 'block') {
+                messageDiv.style.display = 'none';
+            }
+        });
+        
+        emailInput.addEventListener('input', () => {
+            if (messageDiv.style.display === 'block') {
+                messageDiv.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
