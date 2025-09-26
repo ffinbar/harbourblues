@@ -7,12 +7,24 @@
 
 body {
     font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fixed background that stays at viewport height */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     background-image: url('bg.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    overflow-x: hidden;
+    background-repeat: no-repeat;
+    z-index: -1;
 }
 
 .container {
@@ -358,6 +370,10 @@ input[type="email"]::placeholder, input[type="text"]::placeholder {
 }
 
 @media (max-width: 480px) {
+    .footer {
+        padding: 28px 0;
+    }
+
     .mailing-container {
         margin: 20px 10px;
     }
@@ -376,12 +392,14 @@ input[type="email"]::placeholder, input[type="text"]::placeholder {
     
     .mailing-subtitle {
         font-size: 14px;
+        margin-bottom: 0px;
     }
     
     .input-group {
         flex-direction: column;
         align-items: flex-start;
         padding: 20px 0;
+        margin: 0;
     }
     
     .input-label {
