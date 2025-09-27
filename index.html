@@ -40,10 +40,10 @@
     <div class="mailing-list-section">
         <div class="mailing-container">
             <div class="mailing-header">
-                <h2>HEAR FROM US</h2>
+                <h2>ENQUIRE</h2>
             </div>
             <div class="mailing-content">
-                <p class="mailing-subtitle">Be the first one to know about our latest projects.</p>
+                <p class="mailing-subtitle">Get in touch to discuss custom furniture design & bespoke pieces.</p>
                 
                 <form id="emailForm" class="mailing-form" netlify name="enquiry">
                     <input type="hidden" name="form-name" value="enquiry" />
@@ -67,9 +67,18 @@
                             required
                         >
                     </div>
+                    <div class="input-group">
+                        <span class="input-label">Message</span>
+                        <textarea 
+                            id="message-field" 
+                            name="message"
+                            placeholder="Tell us about your project, space, or vision..."
+                            rows="4"
+                        ></textarea>
+                    </div>
                     <button type="submit" class="submit-btn" id="submitBtn">
                         <div class="loading" id="loading"></div>
-                        <span id="buttonText">ENQUIRE</span>
+                        <span id="buttonText">SEND</span>
                     </button>
                 </form>
 

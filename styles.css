@@ -232,7 +232,7 @@ body::before {
     font-family: 'Arial', sans-serif;
 }
 
-input[type="email"], input[type="text"] {
+input[type="email"], input[type="text"], textarea {
     border: none;
     background: transparent;
     padding: 8px 0;
@@ -244,6 +244,12 @@ input[type="email"], input[type="text"] {
     font-family: 'Arial', sans-serif;
     font-weight: 300;
     width: 100%;
+    resize: vertical;
+}
+
+textarea {
+    min-height: 80px;
+    line-height: 1.4;
 }
 
 /* input[type="email"]:focus, input[type="text"]:focus {
@@ -252,7 +258,7 @@ input[type="email"], input[type="text"] {
     border-radius: 2px;
 } */
 
-input[type="email"]::placeholder, input[type="text"]::placeholder {
+input[type="email"]::placeholder, input[type="text"]::placeholder, textarea::placeholder {
     color: rgba(44, 62, 80, 0.4);
     font-style: italic;
     font-weight: 300;
@@ -363,7 +369,7 @@ input[type="email"]::placeholder, input[type="text"]::placeholder {
         font-size: 12px;
     }
     
-    input[type="email"], input[type="text"] {
+    input[type="email"], input[type="text"], textarea {
         min-width: 180px;
         font-size: 14px;
     }
@@ -406,7 +412,7 @@ input[type="email"]::placeholder, input[type="text"]::placeholder {
         margin-bottom: 10px;
     }
     
-    input[type="email"], input[type="text"] {
+    input[type="email"], input[type="text"], textarea {
         width: 100%;
         text-align: left;
         min-width: unset;
